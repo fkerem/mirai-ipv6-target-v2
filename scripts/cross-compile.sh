@@ -14,19 +14,27 @@ mkdir /etc/xcompile > /dev/null 2>&1
 mkdir ../cross-compile-bin > /dev/null 2>&1
 cd ../cross-compile-bin
 wget https://www.uclibc.org/downloads/binaries/0.9.30.1/cross-compiler-i586.tar.bz2
+wget http://distro.ibiblio.org/slitaz/sources/packages/c/cross-compiler-armv6l.tar.bz2
 echo "Copy cross-compiler-i586.tar.bz2 to /etc/xcompile"
 cp cross-compiler-i586.tar.bz2 /etc/xcompile/cross-compiler-i586.tar.bz2
+echo "Copy cross-compiler-armv6l.tar.bz2 to /etc/xcompile"
+cp cross-compiler-armv6l.tar.bz2 /etc/xcompile/cross-compiler-armv6l.tar.bz2
 
 cd /etc/xcompile
 echo "extracting cross-compiler-i586.tar.bz2 ..."
 tar -jxf cross-compiler-i586.tar.bz2
+echo "extracting cross-compiler-armv6l.tar.bz2 ..."
+tar -jxf cross-compiler-armv6l.tar.bz2
 
 echo "removing all tar.bz2 from /etc/xcompile ..."
 rm *.tar.bz2
 echo "move cross-compiler-i586 to i586 ..."
 mv cross-compiler-i586 i586
+echo "move cross-compiler-armv6l to armv6l ..."
+mv cross-compiler-armv6l armv6l
 
 echo "export PATH ..."
 export PATH=$PATH:/etc/xcompile/i586/bin
+export PATH=$PATH:/etc/xcompile/armv6l/bin
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/Documents/go
