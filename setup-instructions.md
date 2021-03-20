@@ -75,7 +75,7 @@ We'll need to update the `sources.list` to get `apt-get` working (only applies t
 5. install go packages
   * `go get github.com/go-sql-driver/mysql`
   * `go get github.com/mattn/go-shellwords`
-5.1. If you get a "package context: unrecognized import path "context" error in Step 5:
+6. [Optional] If you get a "package context: unrecognized import path "context" error in Step 5:
   ```
   sudo apt-get purge golang*
   sudo rm -rf /usr/lib/go-1.6/ /usr/lib/go-1.6/src/ /usr/lib/go-1.6/src/runtime/ /usr/lib/go-1.6/src/runtime/race
