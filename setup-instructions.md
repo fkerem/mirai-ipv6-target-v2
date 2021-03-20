@@ -75,7 +75,17 @@ We'll need to update the `sources.list` to get `apt-get` working (only applies t
 5. install go packages
   * `go get github.com/go-sql-driver/mysql`
   * `go get github.com/mattn/go-shellwords`
-6. build using [mirai/build.sh](mirai/build.sh)
+5.1 If you get a "package context: unrecognized import path "context" error:
+  ```
+  sudo apt-get purge golang*
+  sudo rm -rf /usr/lib/go-1.6/ /usr/lib/go-1.6/src/ /usr/lib/go-1.6/src/runtime/ /usr/lib/go-1.6/src/runtime/race
+  curl -O https://storage.googleapis.com/golang/go1.11.1.linux-amd64.tar.gz
+  sudo tar -C /usr/local -xzf go1.11.1.linux-amd64.tar.gz
+  mkdir -p ~/go; echo "export GOPATH=$HOME/go" >> ~/.bashrc
+  echo "export PATH=$PATH:$HOME/go/bin:/usr/local/go/bin" >> ~/.bashrc
+  source ~/.bashrc
+  ```
+7. build using [mirai/build.sh](mirai/build.sh)
   * e.g. `mirai/build.sh debug telnet`
   * only the debug, telnet version has been tested
   * output files will be in the `debug` folder, with `cnc` and `mirai.dbg` (the bot)
