@@ -67,6 +67,7 @@ We'll need to update the `sources.list` to get `apt-get` working (only applies t
   ```
   add the following lines:
   export PATH=$PATH:/etc/xcompile/i586/bin
+  export PATH=$PATH:/etc/xcompile/armv6l/bin
   export PATH=$PATH:/usr/lib/go/bin
   export GOPATH=$HOME/Documents/go
   ```
